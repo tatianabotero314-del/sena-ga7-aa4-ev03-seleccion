@@ -14,6 +14,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 class ApiIntegrationTest {
  @Autowired MockMvc mvc;@Autowired ObjectMapper mapper;
  String candidato="{\"tipoDocumento\":\"CC\",\"numeroDocumento\":\"TEST-001\",\"nombres\":\"Ana\",\"apellidos\":\"Test\",\"correo\":\"ana@example.com\",\"telefono\":\"3001234567\"}";
+ @Test void loginConservaTildesUtf8()throws Exception{
+  mvc.perform(post("/api/auth/login").with(csrf()).param("correo","analista@demo.local").param("password","Practica2026!"))
+   .andExpect(status().isOk()).andExpect(content().contentType("application/json;charset=UTF-8"))
+   .andExpect(jsonPath("$.nombre").value("Analista de práctica"));
+ }
  @Test void exigeSesion()throws Exception{mvc.perform(get("/api/candidatos")).andExpect(status().isUnauthorized());}
  @Test void coordinadorNoPuedeEscribir()throws Exception{mvc.perform(post("/api/candidatos").with(user("coordinador@demo.local").roles("COORDINADOR")).with(csrf()).contentType(MediaType.APPLICATION_JSON).content(candidato)).andExpect(status().isForbidden());}
  @Test void rechazaSinCsrf()throws Exception{mvc.perform(post("/api/candidatos").with(user("analista@demo.local").roles("ANALISTA")).contentType(MediaType.APPLICATION_JSON).content(candidato)).andExpect(status().isForbidden());}
