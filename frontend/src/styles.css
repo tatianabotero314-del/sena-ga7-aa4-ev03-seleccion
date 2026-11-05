@@ -185,6 +185,8 @@ small {
   margin-bottom: 22px;
 }
 .tabla-scroll {
+  /* Contiene también las etiquetas accesibles de los enlaces de la tabla. */
+  position: relative;
   overflow-x: auto;
 }
 table {
