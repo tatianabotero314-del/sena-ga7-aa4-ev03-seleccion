@@ -5,6 +5,12 @@ Laura Tatiana Ciro Botero · SENA · Ficha 3235898 · 2026.
 Aplicación web React + Vite conectada a una API real de Spring Boot. Los candidatos,
 postulaciones y cambios de estado se guardan en una base relacional del servidor.
 
+## Entrega
+
+- [PDF de la evidencia](https://github.com/tatianabotero314-del/sena-ga7-aa4-ev03-seleccion/blob/main/GA7-220501096-AA4-EV03_Laura_Tatiana.pdf)
+- [ZIP completo para descargar](https://github.com/tatianabotero314-del/sena-ga7-aa4-ev03-seleccion/blob/main/Laura_Tatiana_Ciro_Botero_AA4_EV03.zip)
+- [Verificación del proyecto](https://github.com/tatianabotero314-del/sena-ga7-aa4-ev03-seleccion/actions)
+
 ## Ejecución local
 
 Requisitos: Node.js 22.12+ (o 24), Java 17+ y Maven 3.9+.
