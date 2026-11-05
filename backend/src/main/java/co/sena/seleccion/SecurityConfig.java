@@ -32,12 +32,12 @@ public class SecurityConfig {
             .requestMatchers(HttpMethod.PATCH, "/api/postulaciones/**").hasRole("ANALISTA")
             .requestMatchers("/api/**").authenticated().anyRequest().denyAll())
             .formLogin(form -> form.loginProcessingUrl("/api/auth/login").usernameParameter("correo").passwordParameter("password")
-                .successHandler((req,res,auth) -> { res.setContentType("application/json"); mapper.writeValue(res.getWriter(), service.usuario(auth.getName())); })
-                .failureHandler((req,res,e) -> { res.setStatus(401);res.setContentType("application/json");mapper.writeValue(res.getWriter(),Map.of("message","Correo o contraseña incorrectos.")); }))
+                .successHandler((req,res,auth) -> { res.setContentType("application/json;charset=UTF-8"); mapper.writeValue(res.getWriter(), service.usuario(auth.getName())); })
+                .failureHandler((req,res,e) -> { res.setStatus(401);res.setContentType("application/json;charset=UTF-8");mapper.writeValue(res.getWriter(),Map.of("message","Correo o contraseña incorrectos.")); }))
             .logout(logout -> logout.logoutUrl("/api/auth/logout").logoutSuccessHandler((req,res,auth) -> {res.setStatus(204);}))
             .exceptionHandling(errors -> errors
-                .authenticationEntryPoint((req,res,e) -> {res.setStatus(401);res.setContentType("application/json");mapper.writeValue(res.getWriter(),Map.of("message","Inicia sesión para continuar."));})
-                .accessDeniedHandler((req,res,e) -> {res.setStatus(403);res.setContentType("application/json");mapper.writeValue(res.getWriter(),Map.of("message","No tienes permiso o la sesión de seguridad ha vencido."));}));
+                .authenticationEntryPoint((req,res,e) -> {res.setStatus(401);res.setContentType("application/json;charset=UTF-8");mapper.writeValue(res.getWriter(),Map.of("message","Inicia sesión para continuar."));})
+                .accessDeniedHandler((req,res,e) -> {res.setStatus(403);res.setContentType("application/json;charset=UTF-8");mapper.writeValue(res.getWriter(),Map.of("message","No tienes permiso o la sesión de seguridad ha vencido."));}));
         return http.build();
     }
 }
